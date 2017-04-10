@@ -114,6 +114,7 @@ namespace phirSOFT
             return _dictionary.Remove(key);
         }
 
+        /// <inheritdoc cref="IDictionary{TKey,TValue}"/>
         public bool TryGetValue(TKey key, out TValue value)
         {
             if (!_dictionary.TryGetValue(key, out value))

@@ -1,7 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
+    <AssemblyName>phirSOFT.LazyDictionary</AssemblyName>
+    <RootNamespace>phirSOFT.LazyDictionary</RootNamespace>
+    <Description>A Dictionary with a lazy value generator</Description>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <PackageVersion>0.1.0</PackageVersion>
+    <Authors>phirSOFT</Authors>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageId>phirSOFT.LazyDictionary</PackageId>
+     <PackageTags>Dictionary, Lazy pattern</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.4\phirSOFT.LazyDictionary.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>
