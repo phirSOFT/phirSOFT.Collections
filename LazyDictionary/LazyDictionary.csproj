@@ -11,6 +11,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageId>phirSOFT.LazyDictionary</PackageId>
      <PackageTags>Dictionary, Lazy pattern</PackageTags>
+     <PackageReleaseNotes>* Added WeakLazyDictionary</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
