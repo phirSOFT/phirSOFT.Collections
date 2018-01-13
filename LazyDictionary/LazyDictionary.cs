@@ -85,8 +85,7 @@ namespace phirSOFT.LazyDictionary
         }
 
         
-        public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
-        {
+        public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)       
         {
             _dictionary.CopyTo(array, arrayIndex);
         }
