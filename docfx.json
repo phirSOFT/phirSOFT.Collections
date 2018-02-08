@@ -16,4 +16,23 @@
       "dest": "api"
     }
   ]
+  "build": {
+    "content":
+      [
+        {
+          "files": ["api/*.yml"]
+        }
+      ],
+    "overwrite": "apispec/*.md",
+    "globalMetadata": {
+      "_appTitle": "DocFX website",
+      "_gitContribute": {
+        "repo": "https://github.com/org/repo",
+        "branch": "dev",
+        "apiSpecFolder": "docs-ref-overwrite"
+      }
+    },
+    "dest": "docs",
+    "template": "default"
+  }
 }
