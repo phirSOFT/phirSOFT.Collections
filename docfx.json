@@ -1,0 +1,17 @@
+"metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "**/**.csproj"
+          ],
+          "exclude": [
+            "**/bin/**",
+            "**/obj/**",
+            "docs/**"
+          ]
+        }
+      ],
+      "dest": "api"
+    }
+  ]
