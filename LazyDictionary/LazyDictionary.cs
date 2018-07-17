@@ -18,30 +18,30 @@ namespace phirSOFT.LazyDictionary
 
         /// <inheritdoc />
         /// <summary>
-        ///     Creates a new Lazy dictionary with an genearator function.
+        ///     Creates a new Lazy dictionary with a generator function.
         /// </summary>
-        /// <param name="generatorFunc">The function used to generate miisng members</param>
+        /// <param name="generatorFunc">The function used to generate missing members.</param>
         public LazyDictionary(Func<TKey, TValue> generatorFunc) : this(generatorFunc, new Dictionary<TKey, TValue>())
         {
         }
 
         /// <inheritdoc />
         /// <summary>
-        ///     Creates a new Lazy dictionary with an genearator function.
+        ///     Creates a new Lazy dictionary with a generator function.
         /// </summary>
-        /// <param name="generatorFunc">The function used to generate miisng members</param>
-        /// <param name="comparer">The comparer that should be used for comparing the keys.</param>
+        /// <param name="generatorFunc">The function used to generate missing members.</param>
+        /// <param name="comparer">The comparer that will be used to compare the keys.</param>
         public LazyDictionary(Func<TKey, TValue> generatorFunc, IEqualityComparer<TKey> comparer) : this(generatorFunc,
             new Dictionary<TKey, TValue>(comparer))
         {
         }
 
         /// <summary>
-        ///     Creates a new Lazy dictionary with an genearator function.
+        ///     Creates a new Lazy dictionary with a generator function.
         /// </summary>
-        /// <param name="generatorFunc">The function used to generate miisng members</param>
-        /// <param name="dictionary">The dictionary that should be used for storing.</param>
-        /// <remarks>The dictionary can be prefilled. But must not be readonly. If its readonly an exception will be thrown.</remarks>
+        /// <param name="generatorFunc">The function used to generate missing members</param>
+        /// <param name="dictionary">The dictionary that will be used for storing.</param>
+        /// <remarks>The dictionary can be prefilled, but must not be readonly or an exception will be thrown.</remarks>
         public LazyDictionary(Func<TKey, TValue> generatorFunc, IDictionary<TKey, TValue> dictionary)
         {
             if (dictionary == null) throw new ArgumentNullException(nameof(dictionary));
@@ -78,7 +78,7 @@ namespace phirSOFT.LazyDictionary
 
         
         /// <inheritdoc />
-        /// <remarks>This value determs, wheter the value is allready in the dictionary. This will not invoke the geenrator</remarks>
+        /// <remarks>This determines whether the value is already in the dictionary. This will not invoke the generator.</remarks>
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
             return _dictionary.Contains(item);
