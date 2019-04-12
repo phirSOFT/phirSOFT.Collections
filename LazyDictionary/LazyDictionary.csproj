@@ -4,14 +4,13 @@
     <TargetFramework>netstandard1.4</TargetFramework>
     <AssemblyName>phirSOFT.LazyDictionary</AssemblyName>
     <RootNamespace>phirSOFT.LazyDictionary</RootNamespace>
-    <Description>A Dictionary with a lazy value generator</Description>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
-    <PackageVersion>0.1.0</PackageVersion>
+    <Description>Provides some Dictionaries, that generate their values on requst unsing a factoy. The dictionaries are not thread safe. The  dictionary used different caching techniques like CacheAll, WeakReferences and AccesBases cached,</Description>
     <Authors>phirSOFT</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageId>phirSOFT.LazyDictionary</PackageId>
-     <PackageTags>Dictionary, Lazy pattern</PackageTags>
-     <PackageReleaseNotes>* Added WeakLazyDictionary</PackageReleaseNotes>
+    <PackageTags>Dictionary, Lazy pattern</PackageTags>
+    <PackageReleaseNotes>* Added WeakLazyDictionary
+* Added LazyCache</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -20,6 +19,11 @@
 
   <PropertyGroup>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/phirSOFT/LazyDictionary</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/phirSOFT/LazyDictionary</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
