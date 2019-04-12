@@ -17,6 +17,9 @@ on_failure:
   - ps: Push-AppveyorArtifact WorkingTree.zip
 
 build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+  include_nuget_references: true
   parallel: true
   verbosity: minimal
 
