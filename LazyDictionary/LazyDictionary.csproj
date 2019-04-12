@@ -11,6 +11,7 @@
     <PackageTags>Dictionary, Lazy pattern</PackageTags>
     <PackageReleaseNotes>* Added WeakLazyDictionary
 * Added LazyCache</PackageReleaseNotes>
+    <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
