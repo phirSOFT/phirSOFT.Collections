@@ -57,6 +57,7 @@ namespace phirSOFT.LazyDictionary
             {
                 var cacheItem = new CacheItem
                 {
+                    Key = key,
                     Value = _valueFactory(key)
                 };
 
