@@ -105,15 +105,15 @@ namespace phirSOFT.LazyDictionary
         {
             if ((x & (x - 1)) != 0)
             {
-                x = x << 1;
+                x <<= 1;
             }
 
             int capacity = 1;
             int headCapacity = 1;
-            while ((x = x >> 2) != 0)
+            while ((x >>= 2) != 0)
             {
-                headCapacity = headCapacity << 1;
-                capacity = capacity << 2;
+                headCapacity <<= 1;
+                capacity <<= 2;
             }
             return (capacity, headCapacity);
         }
