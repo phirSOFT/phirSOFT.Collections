@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace phirSOFT.LazyDictionary
+namespace phirSOFT.Collections
 {
     /// <inheritdoc cref="IDictionary{TKey,TValue}"/>
     /// <summary>

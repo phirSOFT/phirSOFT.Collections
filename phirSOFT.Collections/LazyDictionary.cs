@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace phirSOFT.LazyDictionary
+namespace phirSOFT.Collections
 {
     /// <inheritdoc />
     /// <summary>

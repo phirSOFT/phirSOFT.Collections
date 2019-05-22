@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace phirSOFT.LazyDictionary
+namespace phirSOFT.Collections
 {
     public partial class LazyCache<TKey, TValue> : IReadOnlyDictionary<TKey, TValue>
     {

@@ -2,15 +2,23 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
-    <AssemblyName>phirSOFT.LazyDictionary</AssemblyName>
+    <AssemblyName>phirSOFT.Collections</AssemblyName>
     <RootNamespace>phirSOFT.LazyDictionary</RootNamespace>
-    <Description>Provides some Dictionaries, that generate their values on requst unsing a factoy. The dictionaries are not thread safe. The  dictionary used different caching techniques like CacheAll, WeakReferences and AccesBases cached,</Description>
+    <Description>Provides some collections types in addition to the ones in the `System.Collection.*` namespaces.
+
+There are collections for lazy member generation like
+* LazyCache
+* LazyDictionary
+* WeakLazyDictionary
+
+Other classes provided by this library are
+* MnDictionary
+* MultipleValueDictionary</Description>
     <Authors>phirSOFT</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageId>phirSOFT.LazyDictionary</PackageId>
+    <PackageId>phirSOFT.Collections</PackageId>
     <PackageTags>Dictionary, Lazy pattern</PackageTags>
-    <PackageReleaseNotes>* Added WeakLazyDictionary
-* Added LazyCache</PackageReleaseNotes>
+    <PackageReleaseNotes>Rebrand the library to `phirSOFT.Collections`</PackageReleaseNotes>
     <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
   </PropertyGroup>
 
@@ -28,6 +36,7 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Product>phirSOFT.Collections</Product>
   </PropertyGroup>
 
   <ItemGroup>

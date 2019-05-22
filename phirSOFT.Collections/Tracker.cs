@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace phirSOFT.LazyDictionary
+namespace phirSOFT.Collections
 {
     /// <summary>
     /// Track cycles in forward linked lists.

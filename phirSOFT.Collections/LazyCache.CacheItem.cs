@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace phirSOFT.LazyDictionary
+namespace phirSOFT.Collections
 {
     public partial class LazyCache<TKey, TValue>
     {
