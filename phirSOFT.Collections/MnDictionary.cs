@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace phirSOFT.Collections
@@ -13,7 +14,14 @@ namespace phirSOFT.Collections
     /// <typeparam name="TValue">The type of the values</typeparam>
     public class MnDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IReadOnlyDictionary<TKey, IEnumerable<TValue>>
     {
-        private readonly Dictionary<TKey, LinkedList<TValue>> _store = new Dictionary<TKey, LinkedList<TValue>>();
+        private readonly Dictionary<TKey, HashSet<TValue>> _store = new Dictionary<TKey, HashSet<TValue>>();
+        private readonly Dictionary<TValue, HashSet<TKey>> _inverseStore = new Dictionary<TValue, HashSet<TKey>>();
+
+
+        public MnDictionary()
+        {
+            Inverse = (IReadOnlyDictionary<TValue, IEnumerable<TKey>>) new ReadOnlyDictionary<TValue, HashSet<TKey>>(_inverseStore);
+        }
 
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
@@ -34,6 +42,7 @@ namespace phirSOFT.Collections
         public void Clear()
         {
             _store.Clear();
+            _inverseStore.Clear();
             Count = 0;
         }
 
@@ -52,9 +61,17 @@ namespace phirSOFT.Collections
 
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
-            if (!_store.TryGetValue(item.Key, out var list) || !list.Remove(item.Value)) return false;
+            if (!_store.TryGetValue(item.Key, out var list) || !list.Remove(item.Value))
+                return false;
+
+            _inverseStore[item.Value].Remove(item.Key);
+
             if (list.Count == 0)
                 _store.Remove(item.Key);
+
+            if (_inverseStore[item.Value].Count == 0)
+                _inverseStore.Remove(item.Value);
+
             Count--;
             return true;
         }
@@ -65,9 +82,9 @@ namespace phirSOFT.Collections
 
         public void Add(TKey key, TValue value)
         {
-            if (!_store.ContainsKey(key))
-                _store.Add(key, new LinkedList<TValue>());
-            _store[key].AddLast(value);
+            Add(_store, key, value);
+            Add(_inverseStore, value, key);
+
             Count++;
         }
 
@@ -76,30 +93,40 @@ namespace phirSOFT.Collections
             return _store.ContainsKey(key);
         }
 
+        public bool ContainsValue(TValue value)
+        {
+            return _inverseStore.ContainsKey(value);
+        }
 
         public bool Remove(TKey key)
         {
-            if (!_store.TryGetValue(key, out var list)) return false;
-            Count -= list.Count;
-            _store.Remove(key);
-            return true;
+            var (sucess, numRemoved) = Remove(_store, _inverseStore, key);
+            Count -= numRemoved;
+            return sucess;
+        }
+
+        public bool RemoveValue(TValue value)
+        {
+            var (sucess, numRemoved) = Remove(_inverseStore, _store, value);
+            Count -= numRemoved;
+            return sucess;
         }
 
         public bool TryGetValue(TKey key, out TValue value)
         {
             var result = _store.TryGetValue(key, out var list);
-            value = result ? list.First.Value : default(TValue);
+            value = result && list.Count == 1 ? list.First() : default;
             return result;
         }
 
         public TValue this[TKey key]
         {
-            get => throw new NotImplementedException();
-            set => throw new NotImplementedException();
+            get => TryGetValue(key, out TValue value) ? value : throw new NotSupportedException("Indexer is not permitted for multi value keys");
+            set => Add(key, value);
         }
 
         public ICollection<TKey> Keys => _store.Keys;
-        public ICollection<TValue> Values => _store.Values.SelectMany(c => c).ToList().AsReadOnly();
+        public ICollection<TValue> Values => _inverseStore.Keys;
 
         IEnumerator<KeyValuePair<TKey, IEnumerable<TValue>>> IEnumerable<KeyValuePair<TKey, IEnumerable<TValue>>>.
             GetEnumerator()
@@ -119,5 +146,37 @@ namespace phirSOFT.Collections
         IEnumerable<TKey> IReadOnlyDictionary<TKey, IEnumerable<TValue>>.Keys => Keys;
 
         IEnumerable<IEnumerable<TValue>> IReadOnlyDictionary<TKey, IEnumerable<TValue>>.Values => _store.Values;
+
+        public IReadOnlyDictionary<TValue, IEnumerable<TKey>> Inverse { get; }
+
+        private static void Add<TKey, TValue>(IDictionary<TKey, HashSet<TValue>> dictionary, TKey key, TValue value)
+        {
+            if (!dictionary.TryGetValue(key, out HashSet<TValue> values))
+            {
+                values = new HashSet<TValue>();
+                dictionary.Add(key, values);
+            }
+
+            values.Add(value);
+        }
+
+        private static (bool sucess, int removed) Remove<TKey, TValue>(IDictionary<TKey, HashSet<TValue>> dictionary, IDictionary<TValue, HashSet<TKey>> inverseDictionary, TKey key)
+        {
+            if (!dictionary.TryGetValue(key, out var list))
+                return (false, 0);
+
+            dictionary.Remove(key);
+            
+            foreach (var value in list)
+            {
+                var inverse = inverseDictionary[value];
+                inverse.Remove(key);
+                if (inverse.Count == 0)
+                    inverseDictionary.Remove(value);
+            }
+
+            return (true, list.Count);
+        }
+
     }
 }
