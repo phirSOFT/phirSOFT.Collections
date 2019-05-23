@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.28917.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "phirSOFT.Collections", "phirSOFT.Collections\phirSOFT.Collections.csproj", "{ACDD618A-6C56-47EF-A402-8E8702957573}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ci-Items", "Ci-Items", "{4A5FF1E8-2A51-4D33-B141-0D484983DD4B}"
+	ProjectSection(SolutionItems) = preProject
+		GitVersion.yml = GitVersion.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
